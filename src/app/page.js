@@ -2,10 +2,10 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Hero from '@/components/sections/Hero'
 import Services from '@/components/sections/Services'
-import Benefits from '@/components/sections/Benefits'
-import HowItWorks from '@/components/sections/HowItWorks'
-import Packages from '@/components/sections/Packages'
-import Contact from '@/components/sections/Contact'
+// import Benefits from '@/components/sections/Benefits'
+// import HowItWorks from '@/components/sections/HowItWorks'
+// import Packages from '@/components/sections/Packages'
+// import Contact from '@/components/sections/Contact'
 
 export default function Home() {
   return (
@@ -17,10 +17,10 @@ export default function Home() {
       <main>
         <Hero />
         <Services />
-        <Benefits />
+        {/* <Benefits />
         <HowItWorks />
         <Packages />
-        <Contact />
+        <Contact /> */}
       </main>
       <Footer />
     </div>
