@@ -1,8 +1,9 @@
 'use client'
 
 import { useState } from 'react'
-import { Menu, X, Rocket } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import Link from 'next/link'
+import Image from 'next/image'
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -14,28 +15,31 @@ const Navbar = () => {
   ]
 
   return (
-    <nav className="fixed w-full top-0 z-50 bg-slate-950/80 backdrop-blur-xl border-b border-slate-800/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center space-x-3">
-            <div className="relative">
-              <div className="absolute inset-0 bg-cyan-500/20 blur-lg rounded-full" />
-              <Rocket className="w-7 h-7 text-cyan-400 relative" />
+    <nav className="fixed top-0 z-50 w-full border-b bg-slate-950/80 backdrop-blur-xl border-slate-800/50">
+      <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
+        {/* ⬇️ NAVBAR HEIGHT */}
+        <div className="flex items-center justify-between h-20">
+
+          {/* LOGO */}
+          <Link href="/" className="group">
+            <div className="relative w-16 h-16 transition-transform duration-300 sm:w-20 sm:h-20 group-hover:scale-110">
+              <Image
+                src="/logo.png"
+                alt="Growly Logo"
+                fill
+                className="object-contain scale-125 brightness-0 invert"
+                priority
+              />
             </div>
-            <span className="text-2xl font-bold tracking-tight">
-              <span className="text-white">grow</span>
-              <span className="text-cyan-400">ly</span>
-            </span>
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="items-center hidden space-x-8 md:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="text-slate-400 hover:text-cyan-400 transition text-sm font-medium"
+                className="text-sm font-medium transition text-slate-400 hover:text-cyan-400"
               >
                 {link.label}
               </Link>
@@ -62,13 +66,13 @@ const Navbar = () => {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-slate-900/95 backdrop-blur-xl border-t border-slate-800/50">
+        <div className="border-t md:hidden bg-slate-900/95 backdrop-blur-xl border-slate-800/50">
           <div className="px-4 py-6 space-y-4">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className="block text-slate-400 hover:text-cyan-400 text-sm font-medium"
+                className="block text-sm font-medium text-slate-400 hover:text-cyan-400"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 {link.label}
@@ -77,7 +81,7 @@ const Navbar = () => {
 
             <Link
               href="#contact"
-              className="block bg-green-500 hover:bg-green-600 text-slate-950 px-6 py-3 rounded-lg font-semibold text-sm text-center"
+              className="block px-6 py-3 text-sm font-semibold text-center bg-green-500 rounded-lg hover:bg-green-600 text-slate-950"
               onClick={() => setMobileMenuOpen(false)}
             >
               HUBUNGI KAMI

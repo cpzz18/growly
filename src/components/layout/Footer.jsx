@@ -1,5 +1,5 @@
+import Image from 'next/image'
 import Link from 'next/link'
-import { Rocket } from 'lucide-react'
 
 const Footer = () => {
   const socialLinks = [
@@ -9,23 +9,24 @@ const Footer = () => {
   ]
 
   return (
-    <footer className="relative py-12 px-4 border-t border-slate-800/50">
-      <div className="max-w-7xl mx-auto">
-        <div className="flex flex-col md:flex-row justify-between items-center gap-6">
+    <footer className="relative px-4 py-12 border-t border-slate-800/50">
+      <div className="mx-auto max-w-7xl">
+        <div className="flex flex-col items-center justify-between gap-6 md:flex-row">
+
           {/* Logo */}
-          <div className="flex items-center space-x-3">
-            <div className="relative">
-              <div className="absolute inset-0 bg-cyan-500/20 blur-lg rounded-full" />
-              <Rocket className="w-7 h-7 text-cyan-400 relative" />
+          <div className="flex items-center">
+            <div className="relative w-32 h-16 md:w-40 md:h-20">
+              <Image
+                src="/logo.png"
+                alt="Growly Logo"
+                fill
+                className="object-contain scale-110 brightness-0 invert"
+              />
             </div>
-            <span className="text-2xl font-bold tracking-tight">
-              <span className="text-white">grow</span>
-              <span className="text-cyan-400">ly</span>
-            </span>
           </div>
 
           {/* Copyright */}
-          <div className="text-slate-500 text-sm">
+          <div className="text-sm text-center text-slate-500 md:text-left">
             © 2025 <span className="text-cyan-400">Growly</span>. All rights reserved.
           </div>
 
@@ -35,12 +36,13 @@ const Footer = () => {
               <Link
                 key={link.label}
                 href={link.href}
-                className="text-slate-500 hover:text-cyan-400 transition text-sm font-medium"
+                className="text-sm font-medium transition text-slate-500 hover:text-cyan-400"
               >
                 {link.label}
               </Link>
             ))}
           </div>
+
         </div>
       </div>
     </footer>
