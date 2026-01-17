@@ -9,7 +9,7 @@ import Contact from '@/components/sections/Contact'
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen bg-slate-950 overflow-x-hidden">
+    <div className="relative min-h-screen overflow-x-hidden bg-slate-950">
       {/* Grid Background */}
       <div
         className="

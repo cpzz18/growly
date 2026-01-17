@@ -2,57 +2,48 @@
 
 import { Code, Terminal } from 'lucide-react'
 import ServiceCard from '@/components/ui/ServiceCard'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 const Services = () => {
+  const { t } = useLanguage()
+
   const services = [
     {
       icon: <Code className="w-8 h-8" />,
-      title: 'Pembuatan Website',
-      description:
-        'Website profesional dengan teknologi modern seperti React, Next.js, dan WordPress. Dari landing page hingga e-commerce.',
-      features: [
-        'Responsive Design',
-        'SEO Optimized',
-        'Fast Loading',
-        'Custom Design',
-      ],
-      tag: 'WEB DEV',
+      title: t.services.web.title,
+      description: t.services.web.desc,
+      features: t.services.web.features,
+      tag: t.services.web.tag
     },
     {
       icon: <Terminal className="w-8 h-8" />,
-      title: 'Joki Tugas & Project',
-      description:
-        'Bantuan pengerjaan tugas kuliah, skripsi, project akhir dengan kualitas terjamin dan tepat waktu.',
-      features: [
-        'Berbagai Bahasa Pemrograman',
-        'Dokumentasi Lengkap',
-        'Revisi Gratis',
-        'Konsultasi',
-      ],
-      tag: 'CODING',
-    },
+      title: t.services.coding.title,
+      description: t.services.coding.desc,
+      features: t.services.coding.features,
+      tag: t.services.coding.tag
+    }
   ]
 
   return (
-    <section id="services" className="relative py-20 px-4">
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section id="services" className="relative px-4 py-20">
+      <div className="relative z-10 mx-auto max-w-7xl">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="text-cyan-400 text-sm font-bold tracking-widest mb-4 block">
-            OUR SERVICES
+        <div className="mb-16 text-center">
+          <span className="block mb-4 text-sm font-bold tracking-widest text-cyan-400">
+            {t.services.badge}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-            What We Offer
+          <h2 className="mb-4 text-4xl font-bold tracking-tight text-white md:text-5xl">
+            {t.services.title}
           </h2>
-          <p className="text-slate-400 text-lg">
-            Solusi lengkap untuk kebutuhan digital Anda
+          <p className="text-lg text-slate-400">
+            {t.services.subtitle}
           </p>
         </div>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 gap-6">
-          {services.map((service, idx) => (
-            <ServiceCard key={idx} service={service} />
+        <div className="grid gap-6 md:grid-cols-2">
+          {services.map((service) => (
+            <ServiceCard key={service.title} service={service} />
           ))}
         </div>
       </div>

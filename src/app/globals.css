@@ -7,25 +7,39 @@
     --font-inter: 'Inter', sans-serif;
     --font-plus-jakarta: 'Plus Jakarta Sans', sans-serif;
   }
-  
+
   body {
-    @apply bg-slate-950 text-white;
+    @apply antialiased text-white bg-slate-950;
   }
 }
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 bg-clip-text text-transparent;
+    @apply text-transparent bg-gradient-to-r from-cyan-400 via-blue-400 to-cyan-500 bg-clip-text;
   }
-  
+
   .glow-cyan {
-    box-shadow: 0 0 20px rgba(34, 211, 238, 0.3);
+    box-shadow: 0 0 12px rgba(34, 211, 238, 0.25);
   }
-  
+
   .grid-background {
-    background-image: 
+    background-image:
       linear-gradient(to right, #0f172a 1px, transparent 1px),
       linear-gradient(to bottom, #0f172a 1px, transparent 1px);
     background-size: 4rem 4rem;
   }
+
+  .transition-opacity-fast {
+    transition: opacity 0.2s ease;
+  }
+}
+
+/* Language transition only */
+.language-fade-enter {
+  opacity: 0;
+}
+
+.language-fade-enter-active {
+  opacity: 1;
+  transition: opacity 200ms ease;
 }

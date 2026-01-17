@@ -1,40 +1,43 @@
-'use client'
+"use client";
 
-import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
-import Link from 'next/link'
-import Image from 'next/image'
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
+import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Navbar = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const navLinks = [
-    { href: '#services', label: 'LAYANAN' },
-    { href: '#benefits', label: 'KEUNTUNGAN' },
-    { href: '#packages', label: 'PAKET' },
-  ]
+    { href: "#services", label: t.nav.services },
+    { href: "#benefits", label: t.nav.benefits },
+    { href: "#packages", label: t.nav.packages },
+  ];
 
   return (
     <nav className="fixed top-0 z-50 w-full border-b bg-slate-950/80 backdrop-blur-xl border-slate-800/50">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
-        {/* ⬇️ NAVBAR HEIGHT */}
-        <div className="flex items-center justify-between h-20">
-
+        <div className="flex items-center justify-between h-16 sm:h-20">
           {/* LOGO */}
-          <Link href="/" className="group">
-            <div className="relative w-16 h-16 transition-transform duration-300 sm:w-20 sm:h-20 group-hover:scale-110">
+          <Link href="/" className="relative flex items-center group">
+            {/* Glow effect */}
+            <div className="absolute inset-0 transition rounded-lg opacity-0 bg-cyan-500/10 blur-xl group-hover:opacity-100" />
+            <div className="relative w-32 h-12 transition-transform duration-300 group-hover:scale-105 sm:w-40 sm:h-14">
               <Image
                 src="/logo.png"
                 alt="Growly Logo"
                 fill
-                className="object-contain scale-125 brightness-0 invert"
                 priority
+                className="object-contain filter brightness-0 invert" // bikin logo gelap jadi putih
               />
             </div>
           </Link>
 
-          {/* Desktop Menu */}
-          <div className="items-center hidden space-x-8 md:flex">
+          {/* DESKTOP MENU */}
+          <div className="items-center hidden space-x-6 md:flex">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -45,17 +48,19 @@ const Navbar = () => {
               </Link>
             ))}
 
+            <LanguageSwitcher />
+
             <Link
               href="#contact"
-              className="bg-green-500 hover:bg-green-600 text-slate-950 px-6 py-2.5 rounded-lg font-semibold text-sm transition shadow-lg shadow-green-500/20"
+              className="rounded-lg bg-green-500 px-6 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-green-600 shadow-lg shadow-green-500/20 hover:shadow-green-500/30"
             >
-              HUBUNGI KAMI
+              {t.nav.contact}
             </Link>
           </div>
 
-          {/* Mobile Menu Button */}
+          {/* MOBILE BUTTON */}
           <button
-            className="md:hidden text-slate-400 hover:text-cyan-400"
+            className="transition md:hidden text-slate-400 hover:text-cyan-400"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             aria-label="Toggle menu"
           >
@@ -64,10 +69,14 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* MOBILE MENU */}
       {mobileMenuOpen && (
-        <div className="border-t md:hidden bg-slate-900/95 backdrop-blur-xl border-slate-800/50">
+        <div className="border-t md:hidden border-slate-800/50 bg-slate-900/95 backdrop-blur-xl">
           <div className="px-4 py-6 space-y-4">
+            <div className="flex justify-center mb-4">
+              <LanguageSwitcher />
+            </div>
+
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -81,16 +90,16 @@ const Navbar = () => {
 
             <Link
               href="#contact"
-              className="block px-6 py-3 text-sm font-semibold text-center bg-green-500 rounded-lg hover:bg-green-600 text-slate-950"
+              className="block px-6 py-3 text-sm font-semibold text-center bg-green-500 rounded-lg text-slate-950 hover:bg-green-600"
               onClick={() => setMobileMenuOpen(false)}
             >
-              HUBUNGI KAMI
+              {t.nav.contact}
             </Link>
           </div>
         </div>
       )}
     </nav>
-  )
-}
+  );
+};
 
-export default Navbar
+export default Navbar;

@@ -1,37 +1,35 @@
-export const validateForm = (data) => {
-  const errors = {}
+export const isValidEmail = (email) => {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+};
+
+export const validateForm = (data, errorsText) => {
+  const errors = {};
 
   if (!data.name?.trim()) {
-    errors.name = 'Nama wajib diisi'
+    errors.name = errorsText?.name || 'Nama wajib diisi';
   }
 
   if (!data.email?.trim()) {
-    errors.email = 'Email wajib diisi'
-  } else if (!/\S+@\S+\.\S+/.test(data.email)) {
-    errors.email = 'Format email tidak valid'
+    errors.email = errorsText?.email || 'Email wajib diisi';
+  } else if (!isValidEmail(data.email)) {
+    errors.email =
+      errorsText?.emailInvalid || 'Format email tidak valid';
   }
 
   if (!data.whatsapp?.trim()) {
-    errors.whatsapp = 'Nomor WhatsApp wajib diisi'
+    errors.whatsapp =
+      errorsText?.whatsapp || 'Nomor WhatsApp wajib diisi';
   }
 
   if (!data.service) {
-    errors.service = 'Pilih layanan'
+    errors.service =
+      errorsText?.service || 'Pilih layanan';
   }
 
-  return errors
-}
+  return errors;
+};
 
-export const sendWhatsAppMessage = (data) => {
-  const phone = '6281234567890' // GANTI KE NOMOR KAMU
-  const message = `
-Halo Growly 👋
-Nama: ${data.name}
-Email: ${data.email}
-WhatsApp: ${data.whatsapp}
-Layanan: ${data.service}
-  `.trim()
-
-  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`
-  window.open(url, '_blank')
-}
+export const sendWhatsAppMessage = (phone, message) => {
+  const url = `https://wa.me/${phone}?text=${encodeURIComponent(message)}`;
+  window.open(url, '_blank');
+};

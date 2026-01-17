@@ -1,47 +1,45 @@
 'use client'
 
+import { useLanguage } from '@/contexts/LanguageContext'
+
 const HowItWorks = () => {
-  const steps = [
-    { step: "01", title: "Konsultasi", desc: "Ceritakan kebutuhan Anda" },
-    { step: "02", title: "Penawaran", desc: "Dapatkan estimasi biaya & waktu" },
-    { step: "03", title: "Pengerjaan", desc: "Tim kami mulai bekerja" },
-    { step: "04", title: "Selesai", desc: "Project selesai & siap digunakan" },
-  ]
+  const { t } = useLanguage()
 
   return (
-    <section className="relative py-20 px-4">
-      <div className="max-w-7xl mx-auto relative z-10">
+    <section className="relative px-4 py-20">
+      <div className="relative z-10 mx-auto max-w-7xl">
         {/* Section Header */}
-        <div className="text-center mb-16">
-          <span className="text-cyan-400 text-sm font-bold tracking-widest mb-4 block">
-            WORKFLOW
+        <div className="mb-16 text-center">
+          <span className="block mb-4 text-sm font-bold tracking-widest text-cyan-400">
+            {t.workflow.badge}
           </span>
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4 tracking-tight">
-            How It Works
+          <h2 className="mb-4 text-4xl font-bold tracking-tight text-white md:text-5xl">
+            {t.workflow.title}
           </h2>
-          <p className="text-slate-400 text-lg">
-            Proses mudah dalam 4 langkah
+          <p className="text-lg text-slate-400">
+            {t.workflow.subtitle}
           </p>
         </div>
 
         {/* Steps Grid */}
-        <div className="grid md:grid-cols-4 gap-6">
-          {steps.map((item, idx) => (
-            <div key={idx} className="relative group">
-              <div className="bg-slate-900/50 backdrop-blur-sm p-6 rounded-2xl border border-slate-800/50 hover:border-cyan-500/30 transition-all">
-                <div className="text-6xl font-bold text-slate-800 mb-4 tracking-tighter">
-                  {item.step}
+        <div className="relative grid gap-6 md:grid-cols-4">
+          {t.workflow.steps.map((item, idx) => (
+            <div key={item.title} className="relative group">
+              <div className="p-6 transition-all border bg-slate-900/50 backdrop-blur-sm rounded-2xl border-slate-800/50 hover:border-cyan-500/30">
+                <div className="mb-4 text-6xl font-bold tracking-tighter text-slate-800">
+                  {String(idx + 1).padStart(2, '0')}
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">
+                <h3 className="mb-2 text-xl font-bold text-white">
                   {item.title}
                 </h3>
-                <p className="text-slate-400 text-sm">
+                <p className="text-sm text-slate-400">
                   {item.desc}
                 </p>
               </div>
 
-              {idx < 3 && (
-                <div className="hidden md:block absolute top-1/2 -right-3 -translate-y-1/2 z-10">
+              {/* Connector Line */}
+              {idx < t.workflow.steps.length - 1 && (
+                <div className="absolute z-10 hidden transform -translate-y-1/2 md:block top-1/2 -right-3">
                   <div className="w-6 h-0.5 bg-gradient-to-r from-slate-800 to-cyan-500/20" />
                 </div>
               )}
