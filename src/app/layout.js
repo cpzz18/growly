@@ -1,27 +1,30 @@
-import { Inter, Plus_Jakarta_Sans } from 'next/font/google'
+import { Space_Grotesk, Inter } from 'next/font/google'
 import './globals.css'
 import { LanguageProvider } from '@/contexts/LanguageContext'
 
-const inter = Inter({
+const spaceGrotesk = Space_Grotesk({ 
   subsets: ['latin'],
-  variable: '--font-inter',
+  weight: ['400', '500', '600', '700'],
+  variable: '--font-heading',
+  display: 'swap',
 })
 
-const plusJakarta = Plus_Jakarta_Sans({
+const inter = Inter({ 
   subsets: ['latin'],
-  variable: '--font-plus-jakarta',
+  weight: ['400', '500', '600'],
+  variable: '--font-body',
+  display: 'swap',
 })
 
 export const metadata = {
   title: 'Growly - Website Development & Coding Services',
-  description:
-    'Spesialis pembuatan website profesional dan bantuan pengerjaan tugas programming.',
+  description: 'Spesialis pembuatan website profesional untuk UMKM dan bantuan tugas programming.',
 }
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="id" className={`${inter.variable} ${plusJakarta.variable}`}>
-      <body className="antialiased text-white font-inter bg-slate-950">
+    <html lang="id" className={`${spaceGrotesk.variable} ${inter.variable}`}>
+      <body className={`font-body antialiased`}>
         <LanguageProvider>
           {children}
         </LanguageProvider>

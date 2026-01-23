@@ -1,38 +1,46 @@
-"use client";
+'use client'
 
-import { useState } from "react";
-import { Menu, X } from "lucide-react";
-import Link from "next/link";
-import Image from "next/image";
-import LanguageSwitcher from "@/components/ui/LanguageSwitcher";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { useState } from 'react'
+import { Menu, X } from 'lucide-react'
+import Link from 'next/link'
+import Image from 'next/image'
+import LanguageSwitcher from '@/components/ui/LanguageSwitcher'
+import { useLanguage } from '@/contexts/LanguageContext'
 
 const Navbar = () => {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { t } = useLanguage();
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
+  const { t } = useLanguage()
 
   const navLinks = [
-    { href: "#services", label: t.nav.services },
-    { href: "#benefits", label: t.nav.benefits },
-    { href: "#packages", label: t.nav.packages },
-  ];
+    { href: '#services', label: t.nav.services },
+    { href: '#portfolio', label: t.nav.portfolio },
+    { href: '#pricing', label: t.nav.pricing },
+    { href: '#faq', label: 'FAQ' },
+  ]
 
   return (
     <nav className="fixed top-0 z-50 w-full border-b bg-slate-950/80 backdrop-blur-xl border-slate-800/50">
       <div className="px-4 mx-auto max-w-7xl sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
+
           {/* LOGO */}
-          <Link href="/" className="relative flex items-center group">
-            {/* Glow effect */}
-            <div className="absolute inset-0 transition rounded-lg opacity-0 bg-cyan-500/10 blur-xl group-hover:opacity-100" />
-            <div className="relative w-32 h-12 transition-transform duration-300 group-hover:scale-105 sm:w-40 sm:h-14">
-              <Image
-                src="/logo.png"
-                alt="Growly Logo"
-                fill
-                priority
-                className="object-contain filter brightness-0 invert" // bikin logo gelap jadi putih
-              />
+          <Link href="/" className="flex items-center group">
+            <div className="relative">
+              {/* Subtle glow on hover */}
+              <div className="absolute inset-0 transition rounded-lg opacity-0 bg-cyan-500/10 blur-lg group-hover:opacity-100" />
+              
+              <div className="relative transition-transform duration-300 group-hover:scale-105">
+                <div className="relative w-32 h-12 sm:w-40 sm:h-14">
+                  <Image
+                    src="/logo.png"
+                    alt="Growly Logo"
+                    fill
+                    priority
+                    className="object-contain"
+                    style={{ objectFit: 'contain' }}
+                  />
+                </div>
+              </div>
             </div>
           </Link>
 
@@ -52,7 +60,7 @@ const Navbar = () => {
 
             <Link
               href="#contact"
-              className="rounded-lg bg-green-500 px-6 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-green-600 shadow-lg shadow-green-500/20 hover:shadow-green-500/30"
+              className="rounded-lg bg-green-500 px-6 py-2.5 text-sm font-semibold text-slate-950 transition hover:bg-green-600 shadow-lg shadow-green-500/20"
             >
               {t.nav.contact}
             </Link>
@@ -73,6 +81,7 @@ const Navbar = () => {
       {mobileMenuOpen && (
         <div className="border-t md:hidden border-slate-800/50 bg-slate-900/95 backdrop-blur-xl">
           <div className="px-4 py-6 space-y-4">
+
             <div className="flex justify-center mb-4">
               <LanguageSwitcher />
             </div>
@@ -99,7 +108,7 @@ const Navbar = () => {
         </div>
       )}
     </nav>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
